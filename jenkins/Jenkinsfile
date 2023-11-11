@@ -11,10 +11,17 @@ spec:
     volumeMounts:
     - name: maven-cache
       mountPath: /root/.m2
+  - name: git-container
+    image: alpine/git:latest
+    volumeMounts:
+    - name: workspace
+      mountPath: /workspace
   volumes:
   - name: maven-cache
     hostPath:
       path: /root/.m2
+  - name: workspace
+    emptyDir: {}
 """
         }
     }
@@ -47,4 +54,3 @@ spec:
         }
     }
 }
-
