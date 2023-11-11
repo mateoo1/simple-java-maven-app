@@ -2,20 +2,20 @@ pipeline {
     agent {
         kubernetes {
             yaml """
-                apiVersion: v1
-                kind: Pod
-                spec:
-                containers:
-                - name: maven-container
-                    image: maven:3.9.0
-                    volumeMounts:
-                    - name: maven-cache
-                    mountPath: /root/.m2
-                volumes:
-                - name: maven-cache
-                    hostPath:
-                    path: /root/.m2
-                """
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: maven-container
+    image: maven:3.9.0
+    volumeMounts:
+    - name: maven-cache
+      mountPath: /root/.m2
+  volumes:
+  - name: maven-cache
+    hostPath:
+      path: /root/.m2
+"""
         }
     }
     stages {
@@ -47,3 +47,4 @@ pipeline {
         }
     }
 }
+
